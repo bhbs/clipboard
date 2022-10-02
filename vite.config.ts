@@ -12,8 +12,8 @@ export default defineConfig({
     react(),
     VitePWA({
       manifest: {
-        name: "Clipbpard",
-        short_name: "Clipbpard",
+        name: "Clipboard",
+        short_name: "Clipboard",
         description: "A clipboard tool",
         theme_color: "#ffffff",
         background_color: "#ffffff",
