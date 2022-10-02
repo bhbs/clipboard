@@ -1,16 +1,34 @@
-import { useState } from "react";
+import { ChangeEvent, useCallback, useEffect, useState } from "react";
+import { useRecoilState } from "recoil";
+import { textState } from "./atom";
 
 function App() {
-  const [count, setCount] = useState(0);
+  const [text, setText] = useRecoilState(textState);
+  const [state, setState] = useState<boolean>(false);
+
+  const handleChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
+    const target = e.target;
+    const value = target.value;
+    setText(value);
+  }, []);
+
+  const copyToClipboard = useCallback((text: string) => {
+    navigator.clipboard
+      .writeText(text)
+      .then(() => setState(true))
+      .catch(() => setState(false));
+  }, []);
+
+  useEffect(() => {
+    copyToClipboard(text);
+  }, [text]);
 
   return (
     <div>
-      <h1>Vite + React</h1>
-      <div>
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-      </div>
+      <p>
+        <input type="text" value={text} onChange={handleChange} />
+      </p>
+      <p>state: {String(state)}</p>
     </div>
   );
 }
