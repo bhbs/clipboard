@@ -19,16 +19,26 @@ function App() {
       .catch(() => setState(false));
   }, []);
 
-  useEffect(() => {
-    copyToClipboard(text);
-  }, [text]);
-
   return (
     <div>
       <p>
         <input type="text" value={text} onChange={handleChange} />
       </p>
-      <p>state: {String(state)}</p>
+      <p>
+        {state ? (
+          "✅"
+        ) : (
+          <button
+            type="button"
+            autoFocus
+            onClick={() => {
+              copyToClipboard(text);
+            }}
+          >
+            COPY
+          </button>
+        )}
+      </p>
     </div>
   );
 }
