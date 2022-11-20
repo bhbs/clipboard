@@ -1,0 +1,19 @@
+.confirm {
+  appearance: none !important;
+  background: transparent;
+  width: 100%;
+  border-radius: 24px;
+  box-sizing: border-box;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.confirm::-webkit-slider-thumb {
+  appearance: none !important;
+  width: 64px;
+  height: 64px;
+  border-radius: 20px;
+  background: black;
+}

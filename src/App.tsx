@@ -1,6 +1,7 @@
 import { ChangeEvent, useCallback, useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 import { textState } from "./atom";
+import styles from "./App.module.css";
 
 function App() {
   const [text, setText] = useRecoilState(textState);
@@ -10,13 +11,18 @@ function App() {
     const target = e.target;
     const value = target.value;
     setText(value);
+    setState(false);
   }, []);
 
-  const copyToClipboard = useCallback((text: string) => {
-    navigator.clipboard
-      .writeText(text)
-      .then(() => setState(true))
-      .catch(() => setState(false));
+  const handleSlide = useCallback((e: ChangeEvent<HTMLInputElement>) => {
+    const target = e.target;
+    const value = target.value;
+    if (Number(value) > 90) {
+      navigator.clipboard
+        .writeText(text)
+        .then(() => setState(true))
+        .catch(() => setState(false));
+    }
   }, []);
 
   return (
@@ -28,15 +34,12 @@ function App() {
         {state ? (
           "✅"
         ) : (
-          <button
-            type="button"
-            autoFocus
-            onClick={() => {
-              copyToClipboard(text);
-            }}
-          >
-            COPY
-          </button>
+          <input
+            type="range"
+            defaultValue="0"
+            className={styles.confirm}
+            onChange={handleSlide}
+          />
         )}
       </p>
     </div>
