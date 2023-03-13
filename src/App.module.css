@@ -1,3 +1,11 @@
+.text {
+  padding: 20px;
+  margin: auto;
+  width: 100%;
+  box-sizing: border-box;
+  font-size: 3rem;
+}
+
 .confirm {
   appearance: none !important;
   background: transparent;
@@ -14,6 +22,6 @@
   appearance: none !important;
   width: 64px;
   height: 64px;
-  border-radius: 20px;
-  background: black;
+  border: 1px solid black;
+  margin: 8px;
 }

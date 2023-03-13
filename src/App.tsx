@@ -25,7 +25,12 @@ function App() {
   return (
     <div>
       <p>
-        <input type="text" value={text} onChange={handleChange} />
+        <input
+          type="text"
+          value={text}
+          className={styles.text}
+          onChange={handleChange}
+        />
       </p>
       <p>
         <input
